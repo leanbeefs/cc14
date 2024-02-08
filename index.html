@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://github.com/leanbeefs/finalz/blob/main/pexels-daniel-absi-952670.jpg?raw=true');
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10%;
+            align-items: center;
+            display: flex;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            padding: 10px;
+            justify-content: space-between;
+            transition: top 0.3s;
+            z-index: 1000; /* Ensure the navbar is above other elements */
+        }
+        .burgir {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure the burger icon is above other elements */
+            display: none; /* Initially hide the burger icon */
+        }
+        .burgir span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px;
+            background-color: #fff; /* Change the color of the burger icon */
+        }
+        .navbar a {
+            color: white;
+            margin-right: 10px;
+            text-decoration: none;
+            cursor: pointer; /* Add cursor pointer for better UX */
+
+        }
+        .home {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .home .picture img{
+            height: auto;
+            width: 100%; /* Ensure the image fills its container */
+            clip-path: inset(0 0 22% 0);
+        }
+        .home .intro {
+            height: 70vh;
+            padding: 20px; /* Add padding */
+            border: 2px solid rgb(99, 98, 98); /* Add border */
+            border-radius: 20px; /* Add border radius */
+        }
+        .content {
+            margin-top: 85px;
+            padding: 0 20px; /* Add padding to the sides */
+            position: relative; /* Add relative positioning */
+            z-index: 999; /* Ensure the content is above the background image */
+        }
+        .picture-container {
+            margin: 0 auto; /* Center the container horizontally */
+            max-width: 500px; /* Set a maximum width */
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            justify-content: right;
+        }
+        section {
+            margin-bottom: 2%;
+            margin-top: 2%;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 6%;
+            border-radius: 5%;
+            height: 80vh;
+            scroll-snap-align: start;
+        }
+        h2 {
+            color: #333;
+        }
+        body {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+        }
+        .navbar.hide {
+            top: -100px;
+        }
+
+        /* Media query for smaller screens */
+        @media only screen and (max-width: 768px) {
+            .home .picture {
+                display: none; /* Hide the picture on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar" onmouseleave="hideNavbar()">
+        <h1 style="color: #fff;">My portfolio</h1>
+        <div>
+            <a href="#portfolio" onclick="smoothScroll(event, 1000)">Portfolio</a>
+            <a href="#about" onclick="smoothScroll(event, 1000)">About Me</a>
+            <a href="#skills" onclick="smoothScroll(event, 1000)">Skills</a>
+            <a href="#contact" onclick="smoothScroll(event, 1000)">Contact</a>
+        </div>
+    </div>
+    <div class="burgir" id="burgir" onclick="toggleNavbar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <div id="portfolio" class="content">
+        <section class="home">
+            <div class="intro">
+                <h2>Hi, I'm</h2>
+                <h1>Orillos, Lark Dominique J.</h1>
+                <p>I'm a student at the University of the Cordilleras. <br>Currently taking Information Technology majoring in <br>
+                    Web Technologies.</p>
+            </div>
+            <div class="picture-container">
+                <div class="picture">
+                    <img src="https://github.com/leanbeefs/finalz/blob/main/retouch_2024020617302221.png?raw=true">
+                </div>
+            </div>
+        </section>
+        <section id="about">
+            <h2>Portfolio</h2>
+            <!-- About content goes here -->
+        </section>
+        <section id="skills">
+            <h2>Skills</h2>
+            <!-- Skills content goes here -->
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <!-- Contact content goes here -->
+        </section>
+    </div>
+    <button class="back-to-top" onclick="smoothScrollToTop(1000)">Back to top</button>
+    <script>
+        function toggleNavbar() {
+            var navbar = document.querySelector('.navbar');
+            var burgir = document.querySelector('.burgir');
+            navbar.classList.toggle('hide');
+            burgir.style.display = 'none'; // Hide the burger icon
+        }
+
+        function hideNavbar() {
+            var navbar = document.querySelector('.navbar');
+            navbar.classList.add('hide');
+            var burgir = document.querySelector('.burgir');
+            burgir.style.display = 'block'; // Show the burger icon
+        }
+
+        window.addEventListener('scroll', function() {
+            var navbar = document.querySelector('.navbar');
+            var burgir = document.querySelector('.burgir');
+            if (window.pageYOffset > 0) {
+                navbar.classList.add('hide'); // Hide the navbar
+                if (!isMouseNearNavbar()) {
+                    burgir.style.display = 'block'; // Show the burger icon
+                }
+            } else {
+                navbar.classList.remove('hide'); // Show the navbar
+                burgir.style.display = 'none'; // Hide the burger icon
+            }
+        });
+
+        document.addEventListener('mousemove', function(event) {
+            var burgir = document.querySelector('.burgir');
+            if (!isMouseNearNavbar() && window.pageYOffset > 0) {
+                burgir.style.display = 'block'; // Show the burger icon
+            }
+        });
+
+        function isMouseNearNavbar() {
+            var navbar = document.querySelector('.navbar');
+            return (event.clientY < navbar.offsetHeight + 20);
+        }
+
+        function smoothScroll(event, duration) {
+            event.preventDefault(); // Prevent default anchor behavior
+            const targetId = event.target.getAttribute('href'); // Get target section id
+            const targetSection = document.querySelector(targetId); // Find target section
+            const targetPosition = targetSection.offsetTop; // Get target section's top position
+            const startPosition = window.pageYOffset; // Get current scroll position
+            const distance = targetPosition - startPosition; // Calculate distance to scroll
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime; // Set start time if null
+                const timeElapsed = currentTime - startTime; // Calculate time elapsed
+                const scrollAmount = Math.easeInOutQuad(timeElapsed, startPosition, distance, duration); // Calculate scroll amount
+                window.scrollTo(0, scrollAmount); // Scroll to the position
+                if (timeElapsed < duration) requestAnimationFrame(animation); // Continue animation until duration is reached
+            }
+
+            // Easing function for smooth scrolling
+            Math.easeInOutQuad = function (t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            };
+
+            requestAnimationFrame(animation); // Start animation
+        }
+
+        function smoothScrollToTop(duration) {
+            const startPosition = window.pageYOffset; // Get current scroll position
+            const distance = -startPosition; // Calculate distance to scroll
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime; // Set start time if null
+                const timeElapsed = currentTime - startTime; // Calculate time elapsed
+                const scrollAmount = Math.easeInOutQuad(timeElapsed, startPosition, distance, duration); // Calculate scroll amount
+                window.scrollTo(0, scrollAmount); // Scroll to the position
+                if (timeElapsed < duration) requestAnimationFrame(animation); // Continue animation until duration is reached
+            }
+
+            // Easing function for smooth scrolling
+            Math.easeInOutQuad = function (t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            };
+
+            requestAnimationFrame(animation); // Start animation
+        }
+    </script>
+    
+</body>
+</html>
