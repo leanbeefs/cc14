@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #dbdcdc;
+}
+h1, h2 {
+    color: #040404;
+}
+p {
+    color: #141414;
+}
+li {
+    color: #383938;
+}
+div{
+    height: auto;
+    width: 70%;
+    margin: 20px auto;
+    border-radius: 5px;
+    padding: 100px;
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.19), 10px 6px 6px rgba(0,0,0,0.23);
+}
+img:hover {
+    margin: auto;
+    opacity: 0.8;
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+    width: 10%;
+    height: auto;
+}
+img {
+    display: block;
+    margin: auto;
+    width: 10%;
+}
