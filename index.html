@@ -1,67 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-image: url('https://github.com/leanbeefs/finalz/blob/main/pexels-daniel-absi-952670.jpg?raw=true');
-            background-size: cover; /* Cover the entire viewport */
-            background-position: center; /* Center the background image */
+            background-size: cover;
+            background-position: center;
         }
+        .hide {
+            display: none;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+        .back-to-top:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Navbar Styles */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 10%;
-            align-items: center;
             display: flex;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-            padding: 10px;
+            align-items: center;
             justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
             transition: top 0.3s;
-            z-index: 1000; /* Ensure the navbar is above other elements */
+            z-index: 1000;
         }
+        .navbar a {
+            color: white;
+            margin-right: 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Burger Styles */
         .burgir {
             position: fixed;
             top: 10px;
             right: 10px;
             padding: 10px;
             cursor: pointer;
-            z-index: 1000; /* Ensure the burger icon is above other elements */
-            display: none; /* Initially hide the burger icon */
+            display: none;
+            z-index: 1000;
         }
         .burgir span {
             display: block;
             width: 25px;
             height: 3px;
             margin: 5px;
-            background-color: #fff; /* Change the color of the burger icon */
+            background-color: #fff;
         }
-        .navbar a {
-            color: white;
-            margin-right: 10px;
-            text-decoration: none;
-            cursor: pointer; /* Add cursor pointer for better UX */
 
-        }
+        /* Home Styles */
         .home {
             display: grid;
             grid-template-columns: 1fr 1fr;
-        }
-        .home .picture img{
-            height: auto;
-            width: 100%; /* Ensure the image fills its container */
-            clip-path: inset(0 0 22% 0);
-        }
-        .home .intro {
-            height: 70vh;
-            padding: 20px; /* Add padding */
-            border: 2px solid rgb(99, 98, 98); /* Add border */
-            border-radius: 20px; /* Add border radius */
         }
         .content {
             margin-top: 85px;
@@ -69,72 +85,177 @@
             position: relative; /* Add relative positioning */
             z-index: 999; /* Ensure the content is above the background image */
         }
+        .home .picture img {
+            height: auto;
+            width: 100%;
+            clip-path: inset(0 0 22% 0);
+            border-radius: 100%;
+        }
+        .home .intro {
+            height: 70vh;
+            padding: 20px;
+            border: 2px solid rgb(99, 98, 98);
+            border-radius: 20px;
+        }
         .picture-container {
-            margin: 0 auto; /* Center the container horizontally */
-            max-width: 500px; /* Set a maximum width */
+            margin: 0 auto;
+            max-width: 500px;
         }
-        .back-to-top {
+
+        /* Card Styles */
+        .portfolio {
+            overflow-y: auto;
+        }
+        .card {
+            width: 300px;
+            display: inline-block;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            overflow-y: auto;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card img {
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .container {
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .container h4 {
+            margin-bottom: 10px;
+            display: block;
+        }
+        .container p {
+            font-size: 14px;
+            color: #666;
+            display: block;
+        }
+
+        /* Skill Styles */
+        .skill {
+            margin-bottom: 20px;
+        }
+        .skill-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .skill-bar {
+            width: 100%;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .skill-progress {
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            color: #fff;
+            background-color: #007bff;
+            transition: width 0.6s ease;
+        }
+
+        /* Social Icons Styles */
+        .social-icons {
             position: fixed;
-            bottom: 10px;
-            left: 10px;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            justify-content: right;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
         }
+        .social-icons a {
+            margin-bottom: 10px;
+        }
+        .social-icons i {
+            font-size: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .social-icons i:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Section Styles */
         section {
             margin-bottom: 2%;
             margin-top: 2%;
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 6%;
             border-radius: 5%;
             height: 80vh;
             scroll-snap-align: start;
         }
-        h2 {
-            color: #333;
-        }
-        body {
-            scroll-snap-type: y mandatory;
-            overflow-y: scroll;
-        }
         .navbar.hide {
             top: -100px;
         }
-
-        /* Media query for smaller screens */
-        @media only screen and (max-width: 768px) {
+        /* Media Queries */
+        @media only screen and (max-width: 800px) {
+            .container h4 {
+                padding: 10px;
+            }
+            .navbar {
+                height: 15%;
+            }
+            .card {
+                display: block;
+                width: calc(50% - 40px);
+                margin: 1px auto;
+            }
+            .intro {
+                font-size: 14px;
+            }
+            
+            .card {
+                width: calc(80% - 40%);
+            }
+            .container h4,
+            .container p {
+                align-content: center;
+            }
+        }
+        @media only screen and (max-width: 500px) {
             .home .picture {
-                display: none; /* Hide the picture on smaller screens */
+                display: none;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <div class="navbar" onmouseleave="hideNavbar()">
         <h1 style="color: #fff;">My portfolio</h1>
         <div>
             <a href="#portfolio" onclick="smoothScroll(event, 1000)">Portfolio</a>
             <a href="#about" onclick="smoothScroll(event, 1000)">About Me</a>
             <a href="#skills" onclick="smoothScroll(event, 1000)">Skills</a>
-            <a href="#contact" onclick="smoothScroll(event, 1000)">Contact</a>
         </div>
     </div>
+
+    <!-- Burger Icon -->
     <div class="burgir" id="burgir" onclick="toggleNavbar()">
         <span></span>
         <span></span>
         <span></span>
     </div>
     
-    <div id="portfolio" class="content">
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Home Section -->
         <section class="home">
             <div class="intro">
                 <h2>Hi, I'm</h2>
                 <h1>Orillos, Lark Dominique J.</h1>
                 <p>I'm a student at the University of the Cordilleras. <br>Currently taking Information Technology majoring in <br>
                     Web Technologies.</p>
+                <H1>My Specialty</H1>
+                <li>Front End</li>
+                <li>Back End</li>
             </div>
             <div class="picture-container">
                 <div class="picture">
@@ -142,20 +263,84 @@
                 </div>
             </div>
         </section>
-        <section id="about">
+
+        <!-- Portfolio Section -->
+        <section class="portfolio">
             <h2>Portfolio</h2>
-            <!-- About content goes here -->
+            <div class="card">
+                <a href="https://leanbeefs.github.io/indexhhtml/" target="_blank">
+                    <img src="https://github.com/leanbeefs/cc14/blob/main/icone-html-bleue.png?raw=true" alt="HTML Activity">
+                    <div class="container">
+                        <h4><b>HTML Activity</b></h4>
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="https://leanbeefs.github.io/ccss/" target="_blank">
+                    <img src="https://github.com/leanbeefs/cc14/blob/main/919826.png?raw=true" alt="CSS Activity">
+                    <div class="container">
+                        <h4><b>CSS Activity</b></h4>
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="https://leanbeefs.github.io/finalz/" target="_blank">
+                    <img src="https://github.com/leanbeefs/cc14/blob/main/github-icon-2048x1988-jzvzcf2t.png?raw=true" alt="CIT14 website">
+                    <div class="container">
+                        <h4><b>CIT14 website</b></h4>
+                    </div>
+                </a>
+            </div>
         </section>
+
+        <!-- Skills Section -->
         <section id="skills">
             <h2>Skills</h2>
-            <!-- Skills content goes here -->
+            <div class="skill">
+                <div class="skill-label">HTML</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%;">90%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="skill-label">CSS</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%;">85%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="skill-label">JavaScript</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%;">80%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="skill-label">Bootstrap</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%;">85%</div>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="skill-label">jQuery</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%;">80%</div>
+                </div>
+            </div>
         </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <!-- Contact content goes here -->
-        </section>
+
+        <!-- Social Icons -->
+        <div class="social-icons">
+            <a href="mailto:youremail@example.com" target="_blank"><i class="fas fa-envelope"></i></a> <!-- add email pop-up alert -->
+            <a href="https://www.facebook.com/lark.orillos.15" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/lean._.beef/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://discordapp.com/channels/@me/Furiousss#4532" target="_blank"><i class="fab fa-discord"></i></a>
+        </div>
     </div>
+
+    <!-- Back to Top Button -->
     <button class="back-to-top" onclick="smoothScrollToTop(1000)">Back to top</button>
+
+    <!-- JavaScript for Smooth Scrolling and Navbar Interaction -->
     <script>
         function toggleNavbar() {
             var navbar = document.querySelector('.navbar');
@@ -163,7 +348,6 @@
             navbar.classList.toggle('hide');
             burgir.style.display = 'none'; // Hide the burger icon
         }
-
         function hideNavbar() {
             var navbar = document.querySelector('.navbar');
             navbar.classList.add('hide');
@@ -196,7 +380,6 @@
             var navbar = document.querySelector('.navbar');
             return (event.clientY < navbar.offsetHeight + 20);
         }
-
         function smoothScroll(event, duration) {
             event.preventDefault(); // Prevent default anchor behavior
             const targetId = event.target.getAttribute('href'); // Get target section id
@@ -214,7 +397,6 @@
                 if (timeElapsed < duration) requestAnimationFrame(animation); // Continue animation until duration is reached
             }
 
-            // Easing function for smooth scrolling
             Math.easeInOutQuad = function (t, b, c, d) {
                 t /= d / 2;
                 if (t < 1) return c / 2 * t * t + b;
@@ -226,19 +408,18 @@
         }
 
         function smoothScrollToTop(duration) {
-            const startPosition = window.pageYOffset; // Get current scroll position
-            const distance = -startPosition; // Calculate distance to scroll
+            const startPosition = window.pageYOffset;
+            const distance = -startPosition;
             let startTime = null;
 
             function animation(currentTime) {
-                if (startTime === null) startTime = currentTime; // Set start time if null
-                const timeElapsed = currentTime - startTime; // Calculate time elapsed
-                const scrollAmount = Math.easeInOutQuad(timeElapsed, startPosition, distance, duration); // Calculate scroll amount
-                window.scrollTo(0, scrollAmount); // Scroll to the position
-                if (timeElapsed < duration) requestAnimationFrame(animation); // Continue animation until duration is reached
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const scrollAmount = Math.easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, scrollAmount);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
             }
 
-            // Easing function for smooth scrolling
             Math.easeInOutQuad = function (t, b, c, d) {
                 t /= d / 2;
                 if (t < 1) return c / 2 * t * t + b;
@@ -246,9 +427,8 @@
                 return -c / 2 * (t * (t - 2) - 1) + b;
             };
 
-            requestAnimationFrame(animation); // Start animation
+            requestAnimationFrame(animation);
         }
     </script>
-    
 </body>
 </html>
