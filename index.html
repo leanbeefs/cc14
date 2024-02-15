@@ -103,7 +103,7 @@
         }
 
         /* Card Styles */
-        .portfolio {
+        #portfolio {
             overflow-y: auto;
         }
         .card {
@@ -138,6 +138,9 @@
             color: #666;
             display: block;
         }
+
+        /* Section Styles */
+
 
         /* Skill Styles */
         .skill {
@@ -174,7 +177,7 @@
             margin-bottom: 10px;
         }
         .social-icons i {
-            font-size: 20px;
+            font-size: 30px;
             transition: transform 0.3s ease-in-out;
         }
         .social-icons i:hover {
@@ -193,6 +196,11 @@
         }
         .navbar.hide {
             top: -100px;
+        }
+        .title {
+            position: sticky;
+            top: 0;
+            background-color: gray;
         }
         /* Media Queries */
         @media only screen and (max-width: 800px) {
@@ -223,6 +231,18 @@
             .home .picture {
                 display: none;
             }
+            .social-icons {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                flex-direction: row;
+            }
+            .social-icons a {
+                margin-right: 10px;
+            }
+            .social-icons i {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
@@ -231,8 +251,8 @@
     <div class="navbar" onmouseleave="hideNavbar()">
         <h1 style="color: #fff;">My portfolio</h1>
         <div>
+            <a href="#content" onclick="smoothScroll(event, 1000)">Me</a>
             <a href="#portfolio" onclick="smoothScroll(event, 1000)">Portfolio</a>
-            <a href="#about" onclick="smoothScroll(event, 1000)">About Me</a>
             <a href="#skills" onclick="smoothScroll(event, 1000)">Skills</a>
         </div>
     </div>
@@ -245,7 +265,7 @@
     </div>
     
     <!-- Main Content -->
-    <div class="content">
+    <div id="content">
         <!-- Home Section -->
         <section class="home">
             <div class="intro">
@@ -265,8 +285,8 @@
         </section>
 
         <!-- Portfolio Section -->
-        <section class="portfolio">
-            <h2>Portfolio</h2>
+        <section id="portfolio">
+            <h2 class="title">Portfolio</h2>
             <div class="card">
                 <a href="https://leanbeefs.github.io/indexhhtml/" target="_blank">
                     <img src="https://github.com/leanbeefs/cc14/blob/main/icone-html-bleue.png?raw=true" alt="HTML Activity">
@@ -299,38 +319,38 @@
             <div class="skill">
                 <div class="skill-label">HTML</div>
                 <div class="skill-bar">
-                    <div class="skill-progress" style="width: 90%;">90%</div>
+                    <div class="skill-progress" style="width: 40%;">40%</div>
                 </div>
             </div>
             <div class="skill">
                 <div class="skill-label">CSS</div>
                 <div class="skill-bar">
-                    <div class="skill-progress" style="width: 85%;">85%</div>
+                    <div class="skill-progress" style="width: 45%;">45%</div>
                 </div>
             </div>
             <div class="skill">
                 <div class="skill-label">JavaScript</div>
                 <div class="skill-bar">
-                    <div class="skill-progress" style="width: 80%;">80%</div>
+                    <div class="skill-progress" style="width: 10%;">10%</div>
                 </div>
             </div>
             <div class="skill">
                 <div class="skill-label">Bootstrap</div>
                 <div class="skill-bar">
-                    <div class="skill-progress" style="width: 85%;">85%</div>
+                    <div class="skill-progress" style="width: 20%;">20%</div>
                 </div>
             </div>
             <div class="skill">
                 <div class="skill-label">jQuery</div>
                 <div class="skill-bar">
-                    <div class="skill-progress" style="width: 80%;">80%</div>
+                    <div class="skill-progress" style="width: 10%;">10%</div>
                 </div>
             </div>
         </section>
 
         <!-- Social Icons -->
         <div class="social-icons">
-            <a href="mailto:youremail@example.com" target="_blank"><i class="fas fa-envelope"></i></a> <!-- add email pop-up alert -->
+            <a href="#" onclick="copyEmail(event)"><i class="fas fa-envelope"></i></a>
             <a href="https://www.facebook.com/lark.orillos.15" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="https://www.instagram.com/lean._.beef/" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://discordapp.com/channels/@me/Furiousss#4532" target="_blank"><i class="fab fa-discord"></i></a>
@@ -397,6 +417,7 @@
                 if (timeElapsed < duration) requestAnimationFrame(animation); // Continue animation until duration is reached
             }
 
+            // Easing function for smooth scrolling
             Math.easeInOutQuad = function (t, b, c, d) {
                 t /= d / 2;
                 if (t < 1) return c / 2 * t * t + b;
@@ -406,6 +427,7 @@
 
             requestAnimationFrame(animation); // Start animation
         }
+
 
         function smoothScrollToTop(duration) {
             const startPosition = window.pageYOffset;
@@ -428,6 +450,12 @@
             };
 
             requestAnimationFrame(animation);
+        }
+        function copyEmail(event){
+            event.preventDefault();
+            const emailAddress = "lark.orillos@gmail.com";
+            navigator.clipboard.writeText(emailAddress);
+            alert("Email Copied! " + emailAddress);
         }
     </script>
 </body>
