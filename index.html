@@ -34,6 +34,31 @@
             background-color: rgba(0, 0, 0, 0.7);
         }
 
+        /* Section Styles */
+        section {
+            margin-bottom: 2%;
+            margin-top: 2%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 6%;
+            border-radius: 5%;
+            height: 80vh;
+        }
+        .navbar.hide {
+            top: -100px;
+        }
+        .title-container {
+            display: inline-block;
+        }
+        .title {
+            display: inline-block;
+            padding: 10px;
+            background-color: gray;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+        }
+
         /* Navbar Styles */
         .navbar {
             position: fixed;
@@ -106,14 +131,18 @@
         #portfolio {
             overflow-y: auto;
         }
+        .cards-container {
+            display: inline-block;
+            margin: 20px 0;
+        }
         .card {
             width: 300px;
-            display: inline-block;
             margin: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
             overflow-y: auto;
+            display: inline-table;
         }
         .card:hover {
             transform: translateY(-10px);
@@ -131,17 +160,23 @@
         }
         .container h4 {
             margin-bottom: 10px;
-            display: block;
+            display: inline-block;
         }
         .container p {
             font-size: 14px;
             color: #666;
-            display: block;
+            display: inline-block;
         }
 
         /* Skill Styles */
+        .skills-container {
+            display: inline-block;
+            margin: 20px 0;
+        }
         .skill {
+            margin-right: 5px;
             margin-bottom: 20px;
+            width: 800px;
         }
         .skill-label {
             font-weight: bold;
@@ -149,7 +184,7 @@
         }
         .skill-bar {
             width: 100%;
-            background-color: #f0f0f0;
+            background-color: #b1b1b1;
             border-radius: 5px;
             overflow: hidden;
         }
@@ -158,8 +193,7 @@
             line-height: 20px;
             text-align: center;
             color: #fff;
-            background-color: #007bff;
-            transition: width 0.6s ease;
+            background-color: #4b4b4b;
         }
 
         /* Social Icons Styles */
@@ -181,47 +215,33 @@
             transform: translateY(-10px);
         }
 
-        /* Section Styles */
-        section {
-            margin-bottom: 2%;
-            margin-top: 2%;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 6%;
-            border-radius: 5%;
-            height: 80vh;
-            scroll-snap-align: start;
-        }
-        .navbar.hide {
-            top: -100px;
-        }
-        .title {
-            position: sticky;
-            top: 0;
-            background-color: gray;
-        }
         /* Media Queries */
         @media only screen and (max-width: 800px) {
             .container h4 {
                 padding: 10px;
             }
             .navbar {
-                height: 15%;
+                height: 3%;
+            }
+            .title {
+                writing-mode: horizontal-tb;
+                text-orientation: sideways-right;
             }
             .card {
                 display: block;
                 width: calc(50% - 40px);
-                margin: 1px auto;
+                margin: auto auto;
+                width: calc(80% - 40%);
             }
             .intro {
                 font-size: 14px;
             }
-            
-            .card {
-                width: calc(80% - 40%);
-            }
             .container h4,
             .container p {
                 align-content: center;
+            }
+            .skill-bar {
+                width: 45%;
             }
         }
         @media only screen and (max-width: 500px) {
@@ -239,6 +259,9 @@
             }
             .social-icons i {
                 font-size: 20px;
+            }
+            .skill-bar {
+                width: 35%;
             }
         }
     </style>
@@ -283,15 +306,18 @@
 
         <!-- Portfolio Section -->
         <section id="portfolio">
-            <h2 class="title">Portfolio</h2>
-            <div class="card">
-                <a href="https://leanbeefs.github.io/indexhhtml/" target="_blank">
-                    <img src="https://github.com/leanbeefs/cc14/blob/main/icone-html-bleue.png?raw=true" alt="HTML Activity">
-                    <div class="container">
-                        <h4><b>HTML Activity</b></h4>
-                    </div>
-                </a>
+            <div class="title-container">
+                <h2 class="title">PORTFOLIO</h2>
             </div>
+            <div class="cards-container">
+                <div class="card">
+                    <a href="https://leanbeefs.github.io/indexhhtml/" target="_blank">
+                        <img src="https://github.com/leanbeefs/cc14/blob/main/icone-html-bleue.png?raw=true" alt="HTML Activity">
+                        <div class="container">
+                            <h4><b>HTML Activity</b></h4>
+                        </div>
+                    </a>
+                </div>
             <div class="card">
                 <a href="https://leanbeefs.github.io/ccss/" target="_blank">
                     <img src="https://github.com/leanbeefs/cc14/blob/main/919826.png?raw=true" alt="CSS Activity">
@@ -312,35 +338,39 @@
 
         <!-- Skills Section -->
         <section id="skills">
-            <h2>Skills</h2>
-            <div class="skill">
-                <div class="skill-label">HTML</div>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 40%;">40%</div>
-                </div>
+            <div class="title-container">
+                <h2 class="title">SKILLS</h2>
             </div>
-            <div class="skill">
-                <div class="skill-label">CSS</div>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 45%;">45%</div>
+            <div class="skills-container">
+                <div class="skill">
+                    <div class="skill-label">HTML</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 40%;">40%</div>
+                    </div>
                 </div>
-            </div>
-            <div class="skill">
-                <div class="skill-label">JavaScript</div>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 10%;">10%</div>
+                <div class="skill">
+                    <div class="skill-label">CSS</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 45%;">45%</div>
+                    </div>
                 </div>
-            </div>
-            <div class="skill">
-                <div class="skill-label">Bootstrap</div>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 20%;">20%</div>
+                <div class="skill">
+                    <div class="skill-label">JavaScript</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 10%;">10%</div>
+                    </div>
                 </div>
-            </div>
-            <div class="skill">
-                <div class="skill-label">jQuery</div>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 10%;">10%</div>
+                <div class="skill">
+                    <div class="skill-label">Bootstrap</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 20%;">20%</div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-label">jQuery</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 10%;">10%</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -357,8 +387,10 @@
     <!-- Back to Top Button -->
     <button class="back-to-top" onclick="smoothScrollToTop(1000)">Back to top</button>
 
+    <!-- JS Ready -->
+    <!-- Delete comment for javascript functions -->
     <!-- JavaScript for Smooth Scrolling and Navbar Interaction -->
-    <script>
+    <!-- <script>
         function toggleNavbar() {
             var navbar = document.querySelector('.navbar');
             var burgir = document.querySelector('.burgir');
@@ -454,6 +486,6 @@
             navigator.clipboard.writeText(emailAddress);
             alert("Email Copied! " + emailAddress);
         }
-    </script>
+    </script> -->
 </body>
 </html>
