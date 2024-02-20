@@ -4,269 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('https://github.com/leanbeefs/finalz/blob/main/pexels-daniel-absi-952670.jpg?raw=true');
-            background-size: cover;
-            background-position: center;
-        }
-        .hide {
-            display: none;
-        }
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 1000;
-            transition: background-color 0.3s;
-        }
-        .back-to-top:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        /* Section Styles */
-        section {
-            margin-bottom: 2%;
-            margin-top: 2%;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 6%;
-            border-radius: 5%;
-            height: 80vh;
-        }
-        .navbar.hide {
-            top: -100px;
-        }
-        .title-container {
-            display: inline-block;
-        }
-        .title {
-            display: inline-block;
-            padding: 10px;
-            background-color: gray;
-            border-top-right-radius: 10px;
-            border-bottom-right-radius: 10px;
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-        }
-
-        /* Navbar Styles */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 10%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            transition: top 0.3s;
-            z-index: 1000;
-        }
-        .navbar a {
-            color: white;
-            margin-right: 10px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Burger Styles */
-        .burgir {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            padding: 10px;
-            cursor: pointer;
-            display: none;
-            z-index: 1000;
-        }
-        .burgir span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            margin: 5px;
-            background-color: #fff;
-        }
-
-        /* Home Styles */
-        .home {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-        .content {
-            margin-top: 85px;
-            padding: 0 20px; /* Add padding to the sides */
-            position: relative; /* Add relative positioning */
-            z-index: 999; /* Ensure the content is above the background image */
-        }
-        .home .picture img {
-            height: auto;
-            width: 100%;
-            clip-path: inset(0 0 22% 0);
-            border-radius: 100%;
-        }
-        .home .intro {
-            height: 70vh;
-            padding: 20px;
-            border: 2px solid rgb(99, 98, 98);
-            border-radius: 20px;
-        }
-        .picture-container {
-            margin: 0 auto;
-            max-width: 500px;
-        }
-
-        /* Card Styles */
-        #portfolio {
-            overflow-y: auto;
-        }
-        .cards-container {
-            display: inline-block;
-            margin: 20px 0;
-        }
-        .card {
-            width: 300px;
-            margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-            overflow-y: auto;
-            display: inline-table;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-        }
-        .card img {
-            width: 100%;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-        .container {
-            padding: 15px;
-            background-color: #f9f9f9;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-        }
-        .container h4 {
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-        .container p {
-            font-size: 14px;
-            color: #666;
-            display: inline-block;
-        }
-
-        /* Skill Styles */
-        .skills-container {
-            display: inline-block;
-            margin: 20px 0;
-        }
-        .skill {
-            margin-right: 5px;
-            margin-bottom: 20px;
-            width: 800px;
-        }
-        .skill-label {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .skill-bar {
-            width: 100%;
-            background-color: #b1b1b1;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        .skill-progress {
-            height: 20px;
-            line-height: 20px;
-            text-align: center;
-            color: #fff;
-            background-color: #4b4b4b;
-        }
-
-        /* Social Icons Styles */
-        .social-icons {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-        .social-icons a {
-            margin-bottom: 10px;
-        }
-        .social-icons i {
-            font-size: 30px;
-            transition: transform 0.3s ease-in-out;
-        }
-        .social-icons i:hover {
-            transform: translateY(-10px);
-        }
-
-        /* Media Queries */
-        @media only screen and (max-width: 800px) {
-            .container h4 {
-                padding: 10px;
-            }
-            .navbar {
-                height: 3%;
-            }
-            .title {
-                writing-mode: horizontal-tb;
-                text-orientation: sideways-right;
-            }
-            .card {
-                display: block;
-                width: calc(50% - 40px);
-                margin: auto auto;
-                width: calc(80% - 40%);
-            }
-            .intro {
-                font-size: 14px;
-            }
-            .container h4,
-            .container p {
-                align-content: center;
-            }
-            .skill-bar {
-                width: 45%;
-            }
-        }
-        @media only screen and (max-width: 500px) {
-            .home .picture {
-                display: none;
-            }
-            .social-icons {
-                position: fixed;
-                bottom: 10px;
-                right: 10px;
-                flex-direction: row;
-            }
-            .social-icons a {
-                margin-right: 10px;
-            }
-            .social-icons i {
-                font-size: 20px;
-            }
-            .skill-bar {
-                width: 35%;
-            }
-        }
-    </style>
 </head>
 <body>
+    
     <!-- Navbar -->
     <div class="navbar" onmouseleave="hideNavbar()">
         <h1 style="color: #fff;">My portfolio</h1>
@@ -289,17 +31,21 @@
         <!-- Home Section -->
         <section class="home">
             <div class="intro">
-                <h2>Hi, I'm</h2>
-                <h1>Orillos, Lark Dominique J.</h1>
-                <p>I'm a student at the University of the Cordilleras. <br>Currently taking Information Technology majoring in <br>
-                    Web Technologies.</p>
-                <H1>My Specialty</H1>
-                <li>Front End</li>
-                <li>Back End</li>
+                <div class="text-content">
+                    <h2>Hi, I'm</h2>
+                    <h1>Orillos, Lark Dominique J.</h1>
+                    <p>I'm a student at the University of the Cordilleras. <br>Currently taking Information Technology majoring in <br>
+                        Web Technologies.</p>
+                    <h1>My Specialty</h1>
+                    <ul>
+                        <li>Front End</li>
+                        <li>Back End</li>
+                    </ul>
+                </div>
             </div>
             <div class="picture-container">
                 <div class="picture">
-                    <img src="https://github.com/leanbeefs/finalz/blob/main/retouch_2024020617302221.png?raw=true">
+                    <img src="https://github.com/leanbeefs/finalz/blob/main/retouch_2024020617302221.png?raw=true" alt="Profile Picture">
                 </div>
             </div>
         </section>
@@ -376,7 +122,7 @@
         </section>
 
         <!-- Social Icons -->
-        <div class="social-icons"> <!-- add "get in touch" vertically "-->
+        <div class="social-icons">
             <a href="#" onclick="copyEmail(event)"><i class="fas fa-envelope"></i></a>
             <a href="https://www.facebook.com/lark.orillos.15" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="https://www.instagram.com/lean._.beef/" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -388,104 +134,6 @@
     <button class="back-to-top" onclick="smoothScrollToTop(1000)">Back to top</button>
 
     <!-- JS Ready -->
-    <!-- Delete comment for javascript functions -->
-    <!-- JavaScript for Smooth Scrolling and Navbar Interaction -->
-    <!-- <script>
-        function toggleNavbar() {
-            var navbar = document.querySelector('.navbar');
-            var burgir = document.querySelector('.burgir');
-            navbar.classList.toggle('hide');
-            burgir.style.display = 'none'; // Hide the burger icon
-        }
-        function hideNavbar() {
-            var navbar = document.querySelector('.navbar');
-            navbar.classList.add('hide');
-            var burgir = document.querySelector('.burgir');
-            burgir.style.display = 'block'; // Show the burger icon
-        }
-
-        window.addEventListener('scroll', function() {
-            var navbar = document.querySelector('.navbar');
-            var burgir = document.querySelector('.burgir');
-            if (window.pageYOffset > 0) {
-                navbar.classList.add('hide'); // Hide the navbar
-                if (!isMouseNearNavbar()) {
-                    burgir.style.display = 'block'; // Show the burger icon
-                }
-            } else {
-                navbar.classList.remove('hide'); // Show the navbar
-                burgir.style.display = 'none'; // Hide the burger icon
-            }
-        });
-
-        document.addEventListener('mousemove', function(event) {
-            var burgir = document.querySelector('.burgir');
-            if (!isMouseNearNavbar() && window.pageYOffset > 0) {
-                burgir.style.display = 'block'; // Show the burger icon
-            }
-        });
-
-        function isMouseNearNavbar() {
-            var navbar = document.querySelector('.navbar');
-            return (event.clientY < navbar.offsetHeight + 20);
-        }
-        function smoothScroll(event, duration) {
-            event.preventDefault(); // Prevent default anchor behavior
-            const targetId = event.target.getAttribute('href'); // Get target section id
-            const targetSection = document.querySelector(targetId); // Find target section
-            const targetPosition = targetSection.offsetTop; // Get target section's top position
-            const startPosition = window.pageYOffset; // Get current scroll position
-            const distance = targetPosition - startPosition; // Calculate distance to scroll
-            let startTime = null;
-
-            function animation(currentTime) {
-                if (startTime === null) startTime = currentTime; // Set start time if null
-                const timeElapsed = currentTime - startTime; // Calculate time elapsed
-                const scrollAmount = Math.easeInOutQuad(timeElapsed, startPosition, distance, duration); // Calculate scroll amount
-                window.scrollTo(0, scrollAmount); // Scroll to the position
-                if (timeElapsed < duration) requestAnimationFrame(animation); // Continue animation until duration is reached
-            }
-
-            // Easing function for smooth scrolling
-            Math.easeInOutQuad = function (t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            };
-
-            requestAnimationFrame(animation); // Start animation
-        }
-
-
-        function smoothScrollToTop(duration) {
-            const startPosition = window.pageYOffset;
-            const distance = -startPosition;
-            let startTime = null;
-
-            function animation(currentTime) {
-                if (startTime === null) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                const scrollAmount = Math.easeInOutQuad(timeElapsed, startPosition, distance, duration);
-                window.scrollTo(0, scrollAmount);
-                if (timeElapsed < duration) requestAnimationFrame(animation);
-            }
-
-            Math.easeInOutQuad = function (t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            };
-
-            requestAnimationFrame(animation);
-        }
-        function copyEmail(event){
-            event.preventDefault();
-            const emailAddress = "lark.orillos@gmail.com";
-            navigator.clipboard.writeText(emailAddress);
-            alert("Email Copied! " + emailAddress);
-        }
-    </script> -->
+    <script src="script.js"></script>
 </body>
 </html>
